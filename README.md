@@ -1,4 +1,4 @@
-# MightyMeld Tutorial
+# MightyMeld Tutorial (MUI)
 
 Start here to learn how about MightyMeld.
 
