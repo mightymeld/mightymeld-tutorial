@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Link as RouterLink, useMatches } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import {
@@ -11,8 +10,6 @@ import {
 } from "@mui/material";
 import copy from "copy-to-clipboard";
 import { instructionsTheme } from "./theme";
-
-const WIDTH = 300;
 
 export const steps = [
   Step0,
@@ -29,14 +26,6 @@ export const steps = [
 ];
 
 function Instructions({ children, showNav }) {
-  useEffect(() => {
-    document.body.style.marginLeft = `${WIDTH}px`;
-
-    return () => {
-      document.body.style.marginLeft = "0";
-    };
-  }, []);
-
   const [match] = useMatches();
   const step = match.params?.step ? parseInt(match.params.step, 10) : 0;
 
@@ -69,8 +58,6 @@ function Instructions({ children, showNav }) {
             height: "100vh",
             backgroundColor: "#19163E",
             color: "#D5D5E3",
-            borderWidth: 0,
-            borderRightWidth: "1px",
             boxSizing: "border-box",
             padding: 2,
             paddingBottom: 6,
@@ -121,17 +108,15 @@ Instructions.defaultProps = {
 function Step0() {
   return (
     <Instructions showNav={false}>
-      <Container maxWidth="sm">
-        <Typography variant="h1" mt={8}>
-          Welcome
-        </Typography>
-        <Typography variant="body1" my={3}>
-          This app teaches you how to use MightyMeld.
-        </Typography>
-        <Button data-mm-tutorial-click component={RouterLink} to="/step/1">
-          Begin Tutorial
-        </Button>
-      </Container>
+      <Typography variant="h1" mt={6}>
+        Welcome
+      </Typography>
+      <Typography variant="body1" my={3}>
+        This app teaches you how to use MightyMeld.
+      </Typography>
+      <Button data-mm-tutorial-click component={RouterLink} to="/step/1">
+        Begin Tutorial
+      </Button>
     </Instructions>
   );
 }
