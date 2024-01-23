@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Link as RouterLink, useMatches } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import {
@@ -11,8 +10,6 @@ import {
 } from "@mui/material";
 import copy from "copy-to-clipboard";
 import { instructionsTheme } from "./theme";
-
-const WIDTH = 300;
 
 export const steps = [
   Step0,
@@ -28,15 +25,7 @@ export const steps = [
   Step10,
 ];
 
-function Instructions({ children, fullPage, showNav }) {
-  useEffect(() => {
-    document.body.style.marginLeft = `${WIDTH}px`;
-
-    return () => {
-      document.body.style.marginLeft = "0";
-    };
-  }, []);
-
+function Instructions({ children, showNav }) {
   const [match] = useMatches();
   const step = match.params?.step ? parseInt(match.params.step, 10) : 0;
 
@@ -61,7 +50,7 @@ function Instructions({ children, fullPage, showNav }) {
           position: "fixed",
           top: 0,
           left: 0,
-          width: fullPage ? "100%" : WIDTH,
+          width: "300px",
         }}
       >
         <Box
@@ -69,8 +58,6 @@ function Instructions({ children, fullPage, showNav }) {
             height: "100vh",
             backgroundColor: "#19163E",
             color: "#D5D5E3",
-            borderWidth: 0,
-            borderRightWidth: fullPage ? "0" : "1px",
             boxSizing: "border-box",
             padding: 2,
             paddingBottom: 6,
@@ -115,24 +102,21 @@ function Instructions({ children, fullPage, showNav }) {
 }
 
 Instructions.defaultProps = {
-  fullPage: false,
   showNav: true,
 };
 
 function Step0() {
   return (
-    <Instructions fullPage showNav={false}>
-      <Container maxWidth="sm">
-        <Typography variant="h1" mt={8}>
-          Welcome
-        </Typography>
-        <Typography variant="body1" my={3}>
-          This app teaches you how to use MightyMeld.
-        </Typography>
-        <Button data-mm-tutorial-click component={RouterLink} to="/step/1">
-          Begin Tutorial
-        </Button>
-      </Container>
+    <Instructions showNav={false}>
+      <Typography variant="h1" mt={6}>
+        Welcome
+      </Typography>
+      <Typography variant="body1" my={3}>
+        This app teaches you how to use MightyMeld.
+      </Typography>
+      <Button data-mm-tutorial-click component={RouterLink} to="/step/1">
+        Begin Tutorial
+      </Button>
     </Instructions>
   );
 }
@@ -144,7 +128,7 @@ function Step1() {
         Step 1: Selection
       </Typography>
       <Typography variant="body2" my={3}>
-        On the right you’ll see a partially built to-do app. Let’s start by{" "}
+        On the left you’ll see a partially built to-do app. Let’s start by{" "}
         <strong>clicking</strong> on various parts of it.
       </Typography>
       <Box
