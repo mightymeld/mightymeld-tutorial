@@ -1,13 +1,6 @@
 import { Link as RouterLink, useMatches } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
-import {
-  Box,
-  Button,
-  Container,
-  Link,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Link, TextField, Typography } from "@mui/material";
 import copy from "copy-to-clipboard";
 import { instructionsTheme } from "./theme";
 
